@@ -1,0 +1,19 @@
+name: Change Gate CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  policy-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - run: pip install -r requirements.txt
+      - run: python change_gate.py sample.yaml
