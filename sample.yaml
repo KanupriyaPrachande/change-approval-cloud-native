@@ -1,0 +1,4 @@
+action: apply
+resource: deployment
+name: test-service
+environment: staging
