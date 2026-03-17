@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'python -m pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Change Approval') {
             steps {
-                sh 'python change_gate.py sample.yaml'
+                bat 'python change_gate.py sample.yaml'
             }
         }
     }
