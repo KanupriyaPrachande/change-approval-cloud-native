@@ -1,26 +1,22 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'
-        }
-    }
+    agent any
 
     stages {
-        stage('Check Python') {
+        stage('Clone') {
             steps {
-                sh 'python --version'
+                git 'https://github.com/KanupriyaPrachande/change-approval-cloud-native'
             }
         }
 
-        stage('Install Requirements') {
+        stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
-        stage('Run') {
+        stage('Run Tests') {
             steps {
-                sh 'python change_gate.py sample.yaml'
+                bat 'pytest'
             }
         }
     }
